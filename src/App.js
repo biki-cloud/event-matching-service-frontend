@@ -5,7 +5,7 @@ import HomePage from "./components/pages/HomePage";
 import EventOpenPage from "./components/pages/EventOpenPage";
 import EventDraftPage from "./components/pages/EventDraftPage";
 import EventClosePage from "./components/pages/EventClosePage";
-import AccountPage from "./components/pages/AccountPage";
+import EventerAccountPage from "./components/pages/EventerAccountPage";
 
 
 const App = () => {
@@ -16,7 +16,7 @@ const App = () => {
         <Route path="/eventDraft" element={<EventDraftPage />} exact />
         <Route path="/eventOpen" element={<EventOpenPage />} exact />
         <Route path="/eventClose" element={<EventClosePage />} exact />
-        a<Route path="/account" element={<AccountPage />} exact />
+        a<Route path="/eventerAccount" element={<EventerAccountPage />} exact />
       </Routes>
     </BrowserRouter>
   );

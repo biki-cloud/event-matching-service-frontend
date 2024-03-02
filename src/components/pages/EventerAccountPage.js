@@ -1,7 +1,7 @@
 import React from "react";
 import GenericTemplate from "../templates/GenericTemplate";
 
-const EventClosePage = () => {
+const EventerAccountPage = () => {
   return (
     <GenericTemplate title="アカウント">
       <>アカウント</>
@@ -9,4 +9,4 @@ const EventClosePage = () => {
   );
 };
 
-export default EventClosePage;
+export default EventerAccountPage;

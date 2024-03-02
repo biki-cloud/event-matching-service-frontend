@@ -259,7 +259,7 @@ const GenericTemplate = ({
                 <ListItemText primary="過去のイベント" />
               </ListItem>
             </Link>
-            <Link to="/account" className={classes.link}>
+            <Link to="/eventerAccount" className={classes.link}>
               <ListItem button>
                 <ListItemIcon>
                   <AccountCircleOutlinedIcon />
