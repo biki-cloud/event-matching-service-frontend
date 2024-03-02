@@ -25,6 +25,9 @@ import HomeIcon from "@material-ui/icons/Home";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
+import Badge from '@mui/material/Badge';
+import MailIcon from '@mui/icons-material/Mail';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 
 const drawerWidth = 240;
 
@@ -190,8 +193,24 @@ const GenericTemplate = ({
               noWrap
               className={classes.title}
             >
-              管理画面
+              miccle
             </Typography>
+            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+              <Badge badgeContent={4} color="error">
+                <MailIcon />
+              </Badge>
+            </IconButton>
+            <IconButton
+              size="large"
+              aria-label="show 17 new notifications"
+              color="inherit"
+            >
+              <Badge badgeContent={17} color="error">
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>
+          </Box>
           </Toolbar>
         </AppBar>
         <Drawer
