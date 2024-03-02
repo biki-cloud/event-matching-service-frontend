@@ -1,9 +1,11 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import ProductPage from "./components/pages/ProductPage";
 import HomePage from "./components/pages/HomePage";
-import EventDetailPage from "./components/pages/EventDetail";
+import EventOpenPage from "./components/pages/EventOpenPage";
+import EventDraftPage from "./components/pages/EventDraftPage";
+import EventClosePage from "./components/pages/EventClosePage";
+import AccountPage from "./components/pages/AccountPage";
 
 
 const App = () => {
@@ -11,8 +13,10 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} exact />
-        <Route path="/products" element={<ProductPage />} exact />
-        <Route path="/eventDetailPage" element={<EventDetailPage />} exact />
+        <Route path="/eventDraft" element={<EventDraftPage />} exact />
+        <Route path="/eventOpen" element={<EventOpenPage />} exact />
+        <Route path="/eventClose" element={<EventClosePage />} exact />
+        a<Route path="/account" element={<AccountPage />} exact />
       </Routes>
     </BrowserRouter>
   );

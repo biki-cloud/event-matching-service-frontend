@@ -16,9 +16,12 @@ import Container from "@material-ui/core/Container";
 import { Link } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import EditCalendarOutlinedIcon from '@mui/icons-material/EditCalendarOutlined';
+import EventAvailableOutlinedIcon from '@mui/icons-material/EventAvailableOutlined';
+import EventNoteOutlinedIcon from '@mui/icons-material/EventNoteOutlined';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import IconButton from "@material-ui/core/IconButton";
 import HomeIcon from "@material-ui/icons/Home";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -213,20 +216,36 @@ const GenericTemplate = ({
                 <ListItemText primary="トップページ" />
               </ListItem>
             </Link>
-            <Link to="/products" className={classes.link}>
+            <Link to="/eventDraft" className={classes.link}>
               <ListItem button>
                 <ListItemIcon>
-                  <ShoppingCartIcon />
+                  <EditCalendarOutlinedIcon />
                 </ListItemIcon>
-                <ListItemText primary="商品ページ" />
+                <ListItemText primary="作成中イベント" />
               </ListItem>
             </Link>
-            <Link to="/eventDetailPage" className={classes.link}>
+            <Link to="/eventOpen" className={classes.link}>
               <ListItem button>
                 <ListItemIcon>
-                  <ShoppingCartIcon />
+                  <EventAvailableOutlinedIcon />
                 </ListItemIcon>
-                <ListItemText primary="イベント詳細ページ" />
+                <ListItemText primary="公開中イベント" />
+              </ListItem>
+            </Link>
+            <Link to="/eventClose" className={classes.link}>
+              <ListItem button>
+                <ListItemIcon>
+                  <EventNoteOutlinedIcon />
+                </ListItemIcon>
+                <ListItemText primary="過去のイベント" />
+              </ListItem>
+            </Link>
+            <Link to="/account" className={classes.link}>
+              <ListItem button>
+                <ListItemIcon>
+                  <AccountCircleOutlinedIcon />
+                </ListItemIcon>
+                <ListItemText primary="アカウント" />
               </ListItem>
             </Link>
           </List>
