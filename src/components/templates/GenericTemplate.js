@@ -221,6 +221,14 @@ const GenericTemplate = ({
                 <ListItemText primary="商品ページ" />
               </ListItem>
             </Link>
+            <Link to="/eventDetailPage" className={classes.link}>
+              <ListItem button>
+                <ListItemIcon>
+                  <ShoppingCartIcon />
+                </ListItemIcon>
+                <ListItemText primary="イベント詳細ページ" />
+              </ListItem>
+            </Link>
           </List>
         </Drawer>
         <main className={classes.content}>
