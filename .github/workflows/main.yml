@@ -1,0 +1,64 @@
+# ワークフロー名(任意)
+name: DeployEC2
+
+# トリガーとなる GitHub イベント
+on:
+  # PRがマージされたら動作する
+  pull_request:
+   branches: [ main ]
+   types: [closed]
+   
+  # workflow_dispatchを指定しておくとGitHubのコンソールから実行可能になる
+  workflow_dispatch:
+
+# ワークフローの実行処理
+jobs:
+  # ジョブ名(任意)
+  build:
+    # ジョブが実行されるランナー(仮想デバイス)の種類
+    runs-on: ubuntu-latest
+    # タイムアウトの時間を設定しておく
+    timeout-minutes: 10
+
+    # ジョブのステップ
+    steps:
+     # IP取得ライブラリをインストール
+     - name: Public IP Install
+       id: ip
+       uses: haythem/public-ip@v1.2
+
+     # BranchをCheckout
+     - name: Checkout
+       uses: actions/checkout@v2
+
+     # AWS CLIをインストールする
+     - name: AWS CLI install
+       run: |
+         curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+         unzip awscliv2.zip
+         sudo ./aws/install --update
+         aws --version
+
+     # AWS CLIにキーを設定をする
+     - name: AWS set Credentials
+       uses: aws-actions/configure-aws-credentials@v1
+       with:
+         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+         aws-region: us-east-2
+
+     # デプロイする
+     - name: Deploy
+       run: |
+
+         # SSHのセキュリティグループを開放する
+         aws ec2 authorize-security-group-ingress --group-id ${{ secrets.EC2_SECURITY_GROUP_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+
+         # SSH接続して、git pullする
+         echo "${{ secrets.GIT_PRIVATE_KEY }}" > private_key
+         chmod 600 private_key
+         ssh -oStrictHostKeyChecking=no ${{ secrets.EC2_USER_NAME }}@${{ secrets.EC2_HOST_NAME }} -i private_key "cd /home/ec2-user/miccle/event-matching-service-frontend && git pull origin main && cd /home/ec2-user/miccle && sudo docker-compose -f docker-compose-prod.yaml down && sudo docker-compose -f docker-compose-prod.yaml up --build"
+         # 処理を実行
+         
+         # SSHのセキュリティグループを閉じる
+         aws ec2 revoke-security-group-ingress --group-id ${{ secrets.EC2_SECURITY_GROUP_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
