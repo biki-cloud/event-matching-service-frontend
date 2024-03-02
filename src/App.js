@@ -1,33 +1,19 @@
-// src/App.js
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Home from './components/Home';
-import EventManage from './components/EventerManage'; 
-import EventDetail from './components/EventDetail'; 
-import SignUp from './components/SignUp';
-import SignIn from './components/SignIn';
-import VendorManage from './components/VendorManage'; 
-import EventRegister from './components/EventRegister';
-import EventerSettings from './components/EventerSettings';
+import ProductPage from "./components/pages/ProductPage";
+import HomePage from "./components/pages/HomePage";
 
-function App() {
+
+const App = () => {
   return (
     <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/home" element={<Home />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/event/:id" element={<EventDetail />} />
-          <Route path="/event/register" element={<EventRegister />} />
-          <Route path="/eventer/manage" element={<EventManage />} index />
-          <Route path="/eventer/settings" element={<EventerSettings />} index />
-          <Route path="/vendor/manage" element={<VendorManage />} /> // Add this line
-        </Routes>
-      </div>
+      <Switch>
+        <Route path="/products" component={ProductPage} exact />
+        <Route path="/" component={HomePage} exact />
+      </Switch>
     </Router>
   );
-}
+};
 
 export default App;
