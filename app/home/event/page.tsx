@@ -12,6 +12,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Layout from '../Layout';
+import { Link } from '@mui/material';
 
 type EventData = {
     id: number;
@@ -85,12 +86,14 @@ export const EventList = () => {
                         </TableHead>
                         <TableBody>
                             {events.map((event) => (
-                                <StyledTableRow key={event.id}>
-                                    <StyledTableCell component="th" scope="row">
-                                        {event.id}
-                                    </StyledTableCell>
-                                    <StyledTableCell align="right">{event.name}</StyledTableCell>
-                                </StyledTableRow>
+                                <Link href={`/home/event/${event.id}`} key={event.id} >
+                                    <StyledTableRow key={event.id}>
+                                        <StyledTableCell component="th" scope="row">
+                                            {event.id}
+                                        </StyledTableCell>
+                                        <StyledTableCell align="right">{event.name}</StyledTableCell>
+                                    </StyledTableRow>
+                                </Link>
                             ))}
                         </TableBody>
                     </Table>
