@@ -69,7 +69,7 @@ function Layout({
         </ListItemIcon>
         <ListItemText primary="Dashboard" />
       </ListItemButton>
-      <ListItemButton>
+      <ListItemButton component={Link} href="/home/event">
         <ListItemIcon>
           <BarChartIcon />
         </ListItemIcon>
