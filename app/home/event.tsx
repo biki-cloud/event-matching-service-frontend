@@ -48,14 +48,6 @@ function createData(
     return { name, calories, fat, carbs, protein };
 }
 
-const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-
 
 export const Event = () => {
     const [eventName, setEventName] = useState<string>('');
@@ -66,24 +58,20 @@ export const Event = () => {
             .then((res) => res.data)
             .then((data) => {
                 setEvents(data);
-                console.log(data);
-                data.forEach((e: EventData) => {
-                    console.log(e.id, e.name);
-                });
+                console.log('get events api called')
             })
-    }, [events])
+    }, [])
 
     const createEvent = () => {
-        console.log('create event');
         axios.post('http://localhost:8001/api/events/',
             {
                 name: eventName
             })
             .then((res) => res.data)
             .then((data) => {
-                console.log(data);
-                setEvents(data);
-            })
+                console.log('create event api called');
+            });
+        setEvents([...events, { id: events.length + 1, name: eventName }]);
     }
 
     return (
