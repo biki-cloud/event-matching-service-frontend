@@ -1,7 +1,7 @@
 'use client'
 
-import axios from 'axios'
-import { useEffect, useState } from 'react'
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
@@ -11,7 +11,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
 
 type EventData = {
     id: number;
@@ -32,47 +31,43 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     '&:nth-of-type(odd)': {
         backgroundColor: theme.palette.action.hover,
     },
-    // hide last border
     '&:last-child td, &:last-child th': {
         border: 0,
     },
 }));
 
-function createData(
-    name: string,
-    calories: number,
-    fat: number,
-    carbs: number,
-    protein: number,
-) {
-    return { name, calories, fat, carbs, protein };
-}
-
-
 export const Event = () => {
     const [eventName, setEventName] = useState<string>('');
     const [events, setEvents] = useState<Array<EventData>>([]);
 
-    useEffect(() => {
+    // イベントリストを取得する関数
+    const fetchEvents = () => {
         axios.get('http://localhost:8001/api/events/')
             .then((res) => res.data)
             .then((data) => {
                 setEvents(data);
-                console.log('get events api called')
+                console.log('get events api called');
             })
-    }, [])
+            .catch((error) => {
+                console.error('Error fetching events:', error);
+            });
+    };
+
+    useEffect(() => {
+        fetchEvents();
+    }, []);
 
     const createEvent = () => {
-        axios.post('http://localhost:8001/api/events/',
-            {
-                name: eventName
-            })
+        axios.post('http://localhost:8001/api/events/', { name: eventName })
             .then((res) => res.data)
-            .then((data) => {
+            .then(() => {
                 console.log('create event api called');
+                fetchEvents();  // イベントを作成した後に再度イベントリストを取得する
+            })
+            .catch((error) => {
+                console.error('Error creating event:', error);
             });
-        setEvents([...events, { id: events.length + 1, name: eventName }]);
-    }
+    };
 
     return (
         <div>
@@ -88,7 +83,7 @@ export const Event = () => {
                     </TableHead>
                     <TableBody>
                         {events.map((event) => (
-                            <StyledTableRow key={event.name}>
+                            <StyledTableRow key={event.id}>
                                 <StyledTableCell component="th" scope="row">
                                     {event.id}
                                 </StyledTableCell>
@@ -100,10 +95,13 @@ export const Event = () => {
             </TableContainer>
 
             <h1>create event</h1>
-            <input type="text" placeholder="event name" value={eventName}
-                onChange={(e) => setEventName(e.target.value)} />
+            <input
+                type="text"
+                placeholder="event name"
+                value={eventName}
+                onChange={(e) => setEventName(e.target.value)}
+            />
             <button onClick={createEvent}>create event</button>
-
         </div>
-    )
-}
+    );
+};
