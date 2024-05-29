@@ -13,6 +13,8 @@ interface Event {
 const EventDetail = ({ params }: { params: { id: string } }) => {
   const [event, setEvent] = useState<Event | null>(null);
   const id = params.id;
+  const [editing, setEditing] = useState(false);
+  const [editName, setEditName] = useState('');
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -27,6 +29,20 @@ const EventDetail = ({ params }: { params: { id: string } }) => {
     fetchEvent();
   }, [id]);
 
+  const handleEdit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const response = await axios.put(`http://localhost:8001/api/events/${id}/`, {
+        name: editName
+      });
+      setEvent(response.data);
+      setEditing(false);
+      console.log('Event updated successfully');
+    } catch (error) {
+      console.error('Failed to update event', error);
+    }
+  };
+
   if (!event) {
     return <Typography>Loading...</Typography>;
   }
@@ -38,6 +54,17 @@ const EventDetail = ({ params }: { params: { id: string } }) => {
         <Box>
           <Typography variant="h4">{event.name}</Typography>
         </Box>
+        <button onClick={() => setEditing(true)}>Edit</button>
+        {editing && (
+          <form onSubmit={handleEdit}>
+            <input
+              type="text"
+              value={editName}
+              onChange={(e) => setEditName(e.target.value)}
+            />
+            <button type="submit">Save</button>
+          </form>
+        )}
       </Layout>
     </>
   );
