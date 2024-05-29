@@ -26,7 +26,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
-import { Event } from './event';
+import { EventList } from './eventList';
 
 
 function Copyright(props: any) {
@@ -204,7 +204,7 @@ export default function Dashboard() {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
-              {showEvent && < Event />}
+              {showEvent && < EventList />}
             </Grid>
             <Copyright sx={{ pt: 4 }} />
           </Container>

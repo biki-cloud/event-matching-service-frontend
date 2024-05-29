@@ -36,7 +36,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-export const Event = () => {
+export const EventList = () => {
     const [eventName, setEventName] = useState<string>('');
     const [events, setEvents] = useState<Array<EventData>>([]);
 
