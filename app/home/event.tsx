@@ -74,7 +74,7 @@ export const Event = () => {
             <h1>events list</h1>
 
             <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 300 }} aria-label="customized table">
+                <Table aria-label="customized table">
                     <TableHead>
                         <TableRow>
                             <StyledTableCell>ID</StyledTableCell>
