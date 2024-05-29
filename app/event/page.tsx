@@ -14,7 +14,7 @@ export default function Page() {
     const [events, setEvents] = useState<Array<EventData>>([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/events/')
+        axios.get('http://localhost:8001/api/events/')
             .then((res) => res.data)
             .then((data) => {
                 setEvents(data);
@@ -27,7 +27,7 @@ export default function Page() {
 
     const createEvent = () => {
         console.log('create event');
-        axios.post('http://localhost:8000/api/events/',
+        axios.post('http://localhost:8001/api/events/',
         {
             name: eventName
         })
