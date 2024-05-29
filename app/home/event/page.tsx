@@ -11,6 +11,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Layout from '../Layout';
 
 type EventData = {
     id: number;
@@ -71,37 +72,41 @@ export const EventList = () => {
 
     return (
         <div>
-            <h1>events list</h1>
+            <Layout>
+                <h1>events list</h1>
 
-            <TableContainer component={Paper}>
-                <Table aria-label="customized table">
-                    <TableHead>
-                        <TableRow>
-                            <StyledTableCell>ID</StyledTableCell>
-                            <StyledTableCell align="right">Name</StyledTableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {events.map((event) => (
-                            <StyledTableRow key={event.id}>
-                                <StyledTableCell component="th" scope="row">
-                                    {event.id}
-                                </StyledTableCell>
-                                <StyledTableCell align="right">{event.name}</StyledTableCell>
-                            </StyledTableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+                <TableContainer component={Paper}>
+                    <Table aria-label="customized table">
+                        <TableHead>
+                            <TableRow>
+                                <StyledTableCell>ID</StyledTableCell>
+                                <StyledTableCell align="right">Name</StyledTableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {events.map((event) => (
+                                <StyledTableRow key={event.id}>
+                                    <StyledTableCell component="th" scope="row">
+                                        {event.id}
+                                    </StyledTableCell>
+                                    <StyledTableCell align="right">{event.name}</StyledTableCell>
+                                </StyledTableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
 
-            <h1>create event</h1>
-            <input
-                type="text"
-                placeholder="event name"
-                value={eventName}
-                onChange={(e) => setEventName(e.target.value)}
-            />
-            <button onClick={createEvent}>create event</button>
+                <h1>create event</h1>
+                <input
+                    type="text"
+                    placeholder="event name"
+                    value={eventName}
+                    onChange={(e) => setEventName(e.target.value)}
+                />
+                <button onClick={createEvent}>create event</button>
+            </Layout>
         </div>
     );
 };
+
+export default EventList;

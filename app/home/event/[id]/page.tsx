@@ -3,13 +3,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Box, Typography } from '@mui/material';
+import Layout from '../../Layout';
 
 interface Event {
   id: number;
   name: string;
 }
 
-const  EventDetail = ({ params }: { params: { id: string } }) => {
+const EventDetail = ({ params }: { params: { id: string } }) => {
   const [event, setEvent] = useState<Event | null>(null);
   const id = params.id;
 
@@ -31,9 +32,14 @@ const  EventDetail = ({ params }: { params: { id: string } }) => {
   }
 
   return (
-    <Box>
-      <Typography variant="h4">{event.name}</Typography>
-    </Box>
+    <>
+      <Layout>
+        <h1>イベント詳細</h1>
+        <Box>
+          <Typography variant="h4">{event.name}</Typography>
+        </Box>
+      </Layout>
+    </>
   );
 };
 

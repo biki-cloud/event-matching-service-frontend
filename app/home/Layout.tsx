@@ -26,7 +26,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
-import { EventList } from './eventList';
+import { EventList } from './event/page';
 
 
 function Copyright(props: any) {
@@ -50,7 +50,12 @@ interface AppBarProps extends MuiAppBarProps {
 
 const defaultTheme = createTheme();
 
-export default function Dashboard() {
+
+function Layout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   const [open, setOpen] = React.useState(true);
   const [ClientComponents, setClientComponents] = React.useState<{ AppBar: any, Drawer: any } | null>(null);
 
@@ -204,7 +209,7 @@ export default function Dashboard() {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
-              {showEvent && < EventList />}
+              {children}
             </Grid>
             <Copyright sx={{ pt: 4 }} />
           </Container>
@@ -213,3 +218,5 @@ export default function Dashboard() {
     </ThemeProvider>
   );
 }
+
+export default Layout;
