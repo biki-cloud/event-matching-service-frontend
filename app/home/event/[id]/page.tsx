@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Box, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import Layout from '../../Layout';
 
 interface Event {
@@ -50,21 +50,22 @@ const EventDetail = ({ params }: { params: { id: string } }) => {
   return (
     <>
       <Layout>
-        <h1>イベント詳細</h1>
-        <Box>
-          <Typography variant="h4">{event.name}</Typography>
+        <Box sx={{ width: '100%', maxWidth: 500 }}>
+          <Typography variant="h4">イベント詳細</Typography>
+          <Typography variant="h6">name: {event.name}</Typography>
+          <Button onClick={() => setEditing(true)} variant="contained">編集</Button>
+          {editing && (
+            <form onSubmit={handleEdit}>
+              <input
+                type="text"
+                value={editName}
+                onChange={(e) => setEditName(e.target.value)}
+              />
+              <Button type='submit' variant="contained">Save</Button>
+            </form>
+          )}
         </Box>
-        <button onClick={() => setEditing(true)}>Edit</button>
-        {editing && (
-          <form onSubmit={handleEdit}>
-            <input
-              type="text"
-              value={editName}
-              onChange={(e) => setEditName(e.target.value)}
-            />
-            <button type="submit">Save</button>
-          </form>
-        )}
+
       </Layout>
     </>
   );
