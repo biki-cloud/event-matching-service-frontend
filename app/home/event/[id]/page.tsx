@@ -53,7 +53,7 @@ const EventDetail = ({ params }: { params: { id: string } }) => {
         <Box sx={{ width: '100%', maxWidth: 500 }}>
           <Typography variant="h4">イベント詳細</Typography>
           <Typography variant="h6">name: {event.name}</Typography>
-          <Button onClick={() => setEditing(true)} variant="contained">編集</Button>
+          <Button onClick={() => setEditing(!editing)} variant="contained">編集</Button>
           {editing && (
             <form onSubmit={handleEdit}>
               <input
