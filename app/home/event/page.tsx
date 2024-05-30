@@ -69,19 +69,18 @@ export const EventList = () => {
             .catch((error) => {
                 console.error('Error creating event:', error);
             });
+            setEventName('');
     };
 
     return (
         <div>
             <Layout>
-                <Box sx={{ width: '100%', maxWidth: 500 }}>
+                <Box sx={{  width: '100%', maxWidth: 500 }}>
                     <Typography variant="h4" gutterBottom>
                         Create Event
                     </Typography>
                     <TextField id="outlined-basic" label="event name" variant="outlined" value={eventName} onChange={(e) => setEventName(e.target.value)} />
                     <Button onClick={createEvent} variant="contained">Create Event</Button>
-                </Box>
-                <Box sx={{ width: '100%', maxWidth: 500 }}>
                     <Typography variant="h4" gutterBottom>
                         Event List
                     </Typography>
