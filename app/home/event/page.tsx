@@ -100,9 +100,11 @@ export const EventList = () => {
                                     <StyledTableCell component="th" scope="row">
                                         {event.id}
                                     </StyledTableCell>
-                                    <Link href={`/home/event/${event.id}`} key={event.id} >
-                                        <StyledTableCell align="right">詳細</StyledTableCell>
-                                    </Link>
+                                    <StyledTableCell align="right">
+                                        <Link href={`/home/event/${event.id}`} key={event.id} >
+                                            詳細
+                                        </Link>
+                                    </StyledTableCell>
                                     <StyledTableCell align="right">{event.name}</StyledTableCell>
                                 </StyledTableRow>
                             ))}
