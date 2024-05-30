@@ -12,7 +12,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Layout from '../Layout';
-import { Link } from '@mui/material';
+import { Box, Button, Link, TextField, Typography } from '@mui/material';
 
 type EventData = {
     id: number;
@@ -74,39 +74,44 @@ export const EventList = () => {
     return (
         <div>
             <Layout>
-                <h1>events list</h1>
-
+                <Box sx={{ width: '100%', maxWidth: 500 }}>
+                    <Typography variant="h4" gutterBottom>
+                        Create Event
+                    </Typography>
+                    <TextField id="outlined-basic" label="event name" variant="outlined" value={eventName} onChange={(e) => setEventName(e.target.value)} />
+                    <Button onClick={createEvent} variant="contained">Create Event</Button>
+                </Box>
+                <Box sx={{ width: '100%', maxWidth: 500 }}>
+                    <Typography variant="h4" gutterBottom>
+                        Event List
+                    </Typography>
+                </Box>
                 <TableContainer component={Paper}>
                     <Table aria-label="customized table">
                         <TableHead>
                             <TableRow>
                                 <StyledTableCell>ID</StyledTableCell>
+                                <StyledTableCell align="right">詳細</StyledTableCell>
                                 <StyledTableCell align="right">Name</StyledTableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {events.map((event) => (
-                                <Link href={`/home/event/${event.id}`} key={event.id} >
-                                    <StyledTableRow key={event.id}>
-                                        <StyledTableCell component="th" scope="row">
-                                            {event.id}
-                                        </StyledTableCell>
-                                        <StyledTableCell align="right">{event.name}</StyledTableCell>
-                                    </StyledTableRow>
-                                </Link>
+                                <StyledTableRow key={event.id}>
+                                    <StyledTableCell component="th" scope="row">
+                                        {event.id}
+                                    </StyledTableCell>
+                                    <Link href={`/home/event/${event.id}`} key={event.id} >
+                                        <StyledTableCell align="right">詳細</StyledTableCell>
+                                    </Link>
+                                    <StyledTableCell align="right">{event.name}</StyledTableCell>
+                                </StyledTableRow>
                             ))}
                         </TableBody>
                     </Table>
                 </TableContainer>
 
-                <h1>create event</h1>
-                <input
-                    type="text"
-                    placeholder="event name"
-                    value={eventName}
-                    onChange={(e) => setEventName(e.target.value)}
-                />
-                <button onClick={createEvent}>create event</button>
+
             </Layout>
         </div>
     );
