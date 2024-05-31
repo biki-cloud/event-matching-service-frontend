@@ -18,6 +18,7 @@ const UserDetail = ({ user }: UserDetailProps) => {
             className="rounded-full object-cover"
             alt={user.name || "avatar"}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
           />
         </div>
       </div>
