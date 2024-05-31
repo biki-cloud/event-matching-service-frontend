@@ -42,7 +42,7 @@ const PostEdit = ({ user, post }: PostEditProps) => {
   const router = useRouter()
   const [imageUpload, setImageUpload] = useState<ImageListType>([
     {
-      dataURL: post.image || "/noImage.png",
+      dataURL: post.image || "/default.png",
     },
   ])
   const [isLoading, setIsLoading] = useState(false)

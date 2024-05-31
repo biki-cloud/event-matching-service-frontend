@@ -23,7 +23,7 @@ const PostItem = ({ post }: PostItemProps) => {
         <div className="aspect-[16/9] relative overflow-hidden rounded-t-md">
           <Image
             fill
-            src={post.image || "/noImage.png"}
+            src={post.image || "/default.png"}
             alt="thumbnail"
             className="object-cover rounded-t-md transition-all hover:scale-105"
           />

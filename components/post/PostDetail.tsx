@@ -58,7 +58,7 @@ const PostDetail = ({ post, user }: PostDetailProps) => {
       <div className="aspect-[16/9] relative">
         <Image
           fill
-          src={post.image ? `${apiUrl}${post.image}` : "/noImage.png"}
+          src={post.image || "/default.png"}
           alt="thumbnail"
           className="object-cover rounded-md"
         />
