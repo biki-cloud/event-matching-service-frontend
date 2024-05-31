@@ -7,8 +7,13 @@ const nextConfig = {
         hostname: "res.cloudinary.com",
         pathname: "/**",
       },
+      // 画像を表示するときにlocalhostにアクセスするので、localhostの画像も許可する
+      {
+        protocol: "http",
+        hostname: "localhost",
+        pathname: "/**",
+      },
     ],
-    domains: ['localhost'],
   },
   experimental: {
     serverActions: {
