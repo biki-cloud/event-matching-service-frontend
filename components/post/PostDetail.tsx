@@ -61,6 +61,7 @@ const PostDetail = ({ post, user }: PostDetailProps) => {
           src={post.image || "/default.png"}
           alt="thumbnail"
           className="object-cover rounded-md"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
         />
       </div>
 
@@ -75,6 +76,7 @@ const PostDetail = ({ post, user }: PostDetailProps) => {
                 className="rounded-full object-cover"
                 alt={post.user.name || "avatar"}
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
               />
             </div>
           </Link>

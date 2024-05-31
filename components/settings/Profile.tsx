@@ -129,6 +129,7 @@ const Profile = ({ user }: ProfileProps) => {
                           src={image.dataURL}
                           alt={user.name || "avatar"}
                           className="rounded-full object-cover"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                         />
                       </div>
                     )}

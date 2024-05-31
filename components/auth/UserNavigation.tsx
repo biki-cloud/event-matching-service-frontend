@@ -27,6 +27,8 @@ const UserNavigation = ({ user }: UserNavigationProps) => {
             className="rounded-full object-cover"
             alt={user.name || "avatar"}
             fill
+            priority
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
           />
         </div>
       </DropdownMenuTrigger>

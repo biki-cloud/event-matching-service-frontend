@@ -26,6 +26,7 @@ const PostItem = ({ post }: PostItemProps) => {
             src={post.image || "/default.png"}
             alt="thumbnail"
             className="object-cover rounded-t-md transition-all hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
           />
         </div>
       </Link>
@@ -45,6 +46,7 @@ const PostItem = ({ post }: PostItemProps) => {
                 className="rounded-full object-cover"
                 alt={post.user.name || "avatar"}
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
               />
             </div>
           </Link>
